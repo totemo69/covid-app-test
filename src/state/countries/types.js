@@ -1,0 +1,2 @@
+export const GET_DAY_ONE = 'APP/COUNTRY/GET_DAY_ONE';
+export const SET_DAY_ONE= 'APP/COUNTRY/SET_DAY_ONE';
