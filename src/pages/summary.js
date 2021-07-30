@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Card, Row, Col, Layout, Typography, Table } from 'antd';
+import { Card, Row, Col, Layout, Typography } from 'antd';
 import { LOADING_PREFIX, APP_ROUTE } from '../utils/constant';
 import {
   makeSelectLoading,
@@ -14,7 +14,7 @@ import {
 import { clearErrors } from '../state/global/actions';
 import { getSummary } from '../state/summary/actions';
 import { makeSelectSummaryDetails } from '../state/summary/selector';
-
+import StyledTable from '../components/Table';
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
@@ -30,38 +30,58 @@ export function Summary({ fetchSummary, summaryDetails, isLoading }) {
       dataIndex: 'Country',
       key: 'Country',
       render: (text, record) => (
-        <Link href={`${APP_ROUTE.COUNTRY}/${record.Slug}`}>{record.Country}</Link>
+        <Link href={`${APP_ROUTE.COUNTRY}/${record.Slug}`}>
+          {record.Country}
+        </Link>
       ),
     },
     {
       title: 'New Confirmed',
       dataIndex: 'NewConfirmed',
       key: 'NewConfirmed',
+      sorter: {
+        compare: (a, b) => a.NewConfirmed - b.NewConfirmed,
+      },
     },
     {
       title: 'Total Confirmed',
       dataIndex: 'TotalConfirmed',
       key: 'TotalConfirmed',
+      sorter: {
+        compare: (a, b) => a.TotalConfirmed - b.TotalConfirmed,
+      },
     },
     {
       title: 'New Deaths',
       dataIndex: 'NewDeaths',
       key: 'NewDeaths',
+      sorter: {
+        compare: (a, b) => a.NewDeaths - b.NewDeaths,
+      },
     },
     {
       title: 'Total Deaths',
       dataIndex: 'TotalDeaths',
       key: 'TotalDeaths',
+      sorter: {
+        compare: (a, b) => a.TotalDeaths - b.TotalDeaths,
+      },
     },
     {
       title: 'New Recovered',
       dataIndex: 'NewRecovered',
       key: 'NewRecovered',
+      sorter: {
+        compare: (a, b) => a.NewRecovered - b.NewRecovered,
+      },
     },
     {
       title: 'Total Recovered',
       dataIndex: 'TotalRecovered',
       key: 'TotalRecovered',
+      sorter: {
+        compare: (a, b) => a.TotalRecovered - b.TotalRecovered,
+      },
     },
   ];
 
@@ -83,7 +103,7 @@ export function Summary({ fetchSummary, summaryDetails, isLoading }) {
         </Row>
         <Row>
           <Col>
-            <Table columns={columns} dataSource={Countries} loading={isLoading} />
+            <StyledTable columns={columns} dataSource={Countries} loading={isLoading} />
           </Col>
         </Row>
       </Content>

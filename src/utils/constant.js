@@ -6,6 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const API_PATH = {
   SUMMARY: `${API_URL}/summary`,
   COUNTRIES: `${API_URL}/countries`,
+  DAYONE: `${API_URL}/dayone/country`,
 };
 
 export const BASIC_AUTH = {
@@ -15,11 +16,18 @@ export const BASIC_AUTH = {
 
 export const LOADING_PREFIX = {
   SUMMARY: 'summary',
+  DAYONE: 'dayone',
 }
 
 export const APP_ROUTE = {
   SUMMARY: '/summary',
   COUNTRY: '/countries',
+}
+
+export const COVID_STATUS = {
+  CONFIRMED: 'confirmed',
+  RECOVERED: 'recovered',
+  DEATHS: 'deaths',
 }
 
 export const GET_REQUEST = 'GET';
